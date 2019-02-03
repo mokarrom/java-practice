@@ -1,4 +1,7 @@
 # Compiled class file
+/build
+/dist
+/nbproject/private/
 *.class
 
 # Log file
