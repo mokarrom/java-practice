@@ -3,25 +3,25 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package searching;
+package tree;
 
 /**
  *
  * @author Mokarrom
  */
-public class BstNode {
-    BstNode left = null;
-    BstNode right = null;
+public class Node {
+    Node left = null;
+    Node right = null;
     int data;
     
-    public BstNode(int data) {
+    public Node(int data) {
         this.data = data;
     }
     
     public void insert(int value) {
         if (value <= data) {
             if (left == null) {
-                left = new BstNode(value);
+                left = new Node(value);
             }
             else {
                 left.insert(value);
@@ -29,7 +29,7 @@ public class BstNode {
         }
         else {
             if (right == null) {
-                right = new BstNode(value);
+                right = new Node(value);
             }
             else {
                 right.insert(value);
@@ -59,6 +59,19 @@ public class BstNode {
         }
     }
     
+    public boolean contains(Node curNode, int value) {
+        if (curNode == null) {
+            return false;
+        }
+        if (value == curNode.data) {
+            return true;
+        }
+        
+        return value < curNode.data
+                ? contains(curNode.left, value)
+                : contains(curNode.right, value);
+    }
+    
     public void printInOrder() {
         if (left != null) {
             left.printInOrder();
@@ -69,5 +82,19 @@ public class BstNode {
         if (right != null) {
             right.printInOrder();
         }
+    }
+    
+    public static void main(String[] args) {
+        Node bst = new Node(8);
+        bst.insert(3);
+        bst.insert(10);
+        bst.insert(1);
+        bst.insert(6);
+        bst.insert(14);
+        bst.insert(4);
+        bst.insert(7);
+        bst.insert(13);
+        
+        bst.printInOrder();
     }
 }
