@@ -50,7 +50,6 @@ public class PalindromeChecker {
     
     
     public static void main(String[] args) {
-        
         int inputNum = 0;
         String inputStr;
         boolean isNumber;
@@ -72,7 +71,7 @@ public class PalindromeChecker {
                 isNumber = false;
             }
             
-            if (isNumber && isPalindrome(inputNum) || PalindromeChecker.isPalindrome(inputStr.toCharArray())) {
+            if (isNumber && isPalindrome(inputNum) || isPalindrome(inputStr.toCharArray())) {
                 System.out.println(inputStr + " is a Palindrome!");
             }
             else {

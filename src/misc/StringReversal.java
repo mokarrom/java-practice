@@ -42,6 +42,14 @@ public class StringReversal {
         return new String(strBytes);
     }
     
+    static String recuReverse(String str) {
+        if (str.isEmpty())
+            return str;
+        
+        //Calling Function Recursively
+        return recuReverse(str.substring(1)) + str.charAt(0);
+    }
+    
     public static void main(String[] args) {
         Scanner intput  = new Scanner(System.in);
         String inputStr  = null;
@@ -54,7 +62,7 @@ public class StringReversal {
             }
             
             System.out.println("Input: " + inputStr);
-            System.out.println("Reverse: " + reverseByBytes(inputStr));     
+            System.out.println("Reverse: " + recuReverse(inputStr));     
             System.out.println("");
         } while (true);
     }

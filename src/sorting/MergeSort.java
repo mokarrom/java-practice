@@ -99,7 +99,7 @@ public final class MergeSort {
          int tmp = items[idx1];
          items[idx1] = items[idx2];
          items[idx2] = tmp;
-     }
+    }
     
     public static void main(String[] args) {
         int arr[] = {3, 6, 0, 1, 5};

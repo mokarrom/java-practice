@@ -5,6 +5,9 @@
  */
 package tree;
 
+import java.util.LinkedList;
+import java.util.Queue;
+
 /**
  *
  * @author mokarromh
@@ -25,7 +28,12 @@ public class BST {
         } 
     }
     
-    public enum BftOrder {IN_ORDER, PRE_ORDER, POST_ORDER};
+    public enum Order {
+        IN_ORDER, // Depth-first traversal: Left -> Root -> Right   sorted order
+        PRE_ORDER, // Depth-first traversal: Root -> Lef -> Right
+        POST_ORDER, // Depth-first traversal: Left -> Right -> Root
+        LVL_ORDER // Breadth-first traversal: level-order traversal
+    };
     
     private BstNode root;
 
@@ -222,6 +230,7 @@ public class BST {
         if (curNode.data < minVal || curNode.data > maxVal) {
             return false; // current node violates the min/max constraints
         }
+        
         return isValidBst(curNode.left, minVal, curNode.data)
                 && isValidBst(curNode.right, curNode.data, maxVal);
     }
@@ -278,7 +287,7 @@ public class BST {
         return false;
     }
     
-    public void printNodes(BftOrder tvslType) {
+    public void printNodes(Order tvslType) {
         switch (tvslType) {
             case PRE_ORDER:
                 System.out.print("Pre-Order:  ");
@@ -295,6 +304,12 @@ public class BST {
             case POST_ORDER:
                 System.out.print("Post-Order: ");
                 printPostOrder(root);
+                System.out.println();
+                break;
+                
+            case LVL_ORDER:
+                System.out.print("Level-Order: ");
+                printLevelOrder(root);
                 System.out.println();
                 break;
                 
@@ -327,6 +342,29 @@ public class BST {
         }      
     }
     
+    private void printLevelOrder(BstNode rootNode) {
+        if (rootNode == null) {
+            return;
+        }
+        
+        Queue<BstNode> queue = new LinkedList<>();
+        queue.add(rootNode);
+        
+        while (queue.size() > 0) {
+            BstNode node = queue.remove();
+            
+            if (node.left != null) {
+                queue.add(node.left);
+            }
+           
+            if (node.right != null) {
+                queue.add(node.right);
+            }
+            
+            System.out.print(node.data + " ");
+        }            
+    }
+    
     public static void main(String[] args) {
         bstTestCase1();
         bstTestCase2();
@@ -357,14 +395,14 @@ public class BST {
         System.out.println("Is Complete Binary Tree ? " + bst.isCompleteTree());
         System.out.println("Height = " + bst.findHeight());
         
-        bst.printNodes(BftOrder.IN_ORDER);
+        bst.printNodes(Order.LVL_ORDER);
         
         System.out.println("Min value: " + bst.findMinValue());
         System.out.println("Min value: " + bst.findMaxValue());
         
         System.out.println("\nDelete Test");
         bst.delete(50);
-        bst.printNodes(BftOrder.IN_ORDER);
+        bst.printNodes(Order.IN_ORDER);
     }
     
     static void bstTestCase2() {
@@ -391,13 +429,13 @@ public class BST {
         System.out.println("Is valid BST ? " + bst.isValidBst());
         System.out.println("Is Complete Binary Tree ? " + bst.isCompleteTree());
         
-        bst.printNodes(BftOrder.IN_ORDER);
+        bst.printNodes(Order.IN_ORDER);
         
         bst.delete(3);
-        bst.printNodes(BftOrder.IN_ORDER);
+        bst.printNodes(Order.IN_ORDER);
         
         bst.delete(8);
-        bst.printNodes(BftOrder.IN_ORDER);
+        bst.printNodes(Order.IN_ORDER);
     }
     
     static void bstTestCase3() {
@@ -425,12 +463,12 @@ public class BST {
 
         System.out.println("Is valid BST ? " + bst.isValidBst());
         System.out.println("Is Complete Binary Tree ? " + bst.isCompleteTree());
-        bst.printNodes(BftOrder.IN_ORDER);
+        bst.printNodes(Order.IN_ORDER);
         
         bst.delete(3);
-        bst.printNodes(BftOrder.IN_ORDER);
+        bst.printNodes(Order.IN_ORDER);
         
         bst.delete(8);
-        bst.printNodes(BftOrder.IN_ORDER);
+        bst.printNodes(Order.IN_ORDER);
     }
 }

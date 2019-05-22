@@ -28,4 +28,56 @@ public class Util {
         elements[i] = elements[j];
         elements[j] = temp;
     }
+    
+    /**
+     * Swap by addition and subtraction operation
+     * 
+     * @param a
+     * @param b 
+     */
+    static void swapAD(int a, int b) {
+        System.out.println("Before: a="+a+" b="+b);
+        
+        a = a + b;
+        b = a - b;
+        a = a - b;
+        
+        System.out.println("Before: a="+a+" b="+b);
+    }
+    
+    /**
+     * Swap by XOR operation
+     * 
+     * @param a
+     * @param b 
+     */
+    static void swapXOR(int a, int b) {
+        System.out.println("Before: a="+a+" b="+b);
+        
+        a = a ^ b;
+        b = a ^ b;
+        a = a ^ b;
+        
+        System.out.println("Before: a="+a+" b="+b);
+    }
+    
+    /**
+     * Swap by multiplication and division
+     * 
+     * @param a
+     * @param b 
+     */
+    static void swapMD(int a, int b) {
+        System.out.println("Before: a="+a+" b="+b);
+        
+        a = a * b;
+        b = a / b;
+        a = a / b;
+        
+        System.out.println("Before: a="+a+" b="+b);
+    }
+    
+    public static void main(String[] args) {
+        swapMD(3, 5);
+    }
 }
