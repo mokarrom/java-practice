@@ -56,7 +56,7 @@ public class BST {
                 curNode.left = new BstNode(value);
             }
             else {
-                insert(curNode.left, value);;
+                insert(curNode.left, value);
             }
         }
         else {
