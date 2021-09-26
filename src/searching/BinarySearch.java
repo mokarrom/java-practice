@@ -40,9 +40,9 @@ public class BinarySearch {
     
     public static int iterativeBinSearch(int[] items, int x) {
         int low = 0;
-        int high = items.length;
+        int high = items.length - 1;
         
-        while (low < high) {
+        while (low <= high) {
             int mid = (low + high) / 2;     // low + (high - low) / 2;
             
             if (x < items[mid]) {
@@ -61,6 +61,6 @@ public class BinarySearch {
     
     public static void main(String[] args) {
         int a[]={-1, 5, 6, 18, 19, 25, 46, 78, 102, 114};        
-        System.out.println("Item loc: " + search(a, 102));
+        System.out.println("Item loc: " + search(a, 115));
     }
 }
